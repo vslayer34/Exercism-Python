@@ -15,7 +15,7 @@ def square(number):
     number_of_grains = 1
     # check if the number is between 1 and 64
     if (number > 64 or number < 1):
-        raise ValueError("number of squares can only be between 0 and 64")
+        raise ValueError("square must be between 1 and 64")
 
     # check if the number isn't int
     if (type(number) is not int):
@@ -34,7 +34,11 @@ def square(number):
 
 # the total number of grains on the chessboard
 def total():
-    pass
+    # initial sum of grains
+    sum = 0
+    for i in range(1, 65):
+        sum += square(i)
+    return sum
 
 
 
@@ -66,3 +70,8 @@ print(square(32))
 # Test 7
 # grains on square 64 should return 9223372036854775808
 print(square(64))
+
+
+# Test 10
+# total number of grains on the board should return 18446744073709551615
+print(total())
