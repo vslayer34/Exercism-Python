@@ -47,7 +47,12 @@ def remove_suffix_ness(word):
 
     For example: "heaviness" becomes "heavy", but "sadness" becomes "sad".
     """
-    
+    original_word = word.removesuffix("ness")
+    if original_word[-1] is not "i":
+        return original_word
+    else:
+        removed_i = original_word[0:-1]
+        return removed_i + "y"
 
 
 def adjective_to_verb(sentence, index):
@@ -59,8 +64,13 @@ def adjective_to_verb(sentence, index):
 
     For example, ("It got dark as the sun set", 2) becomes "darken".
     """
+    targeted_word = sentence.split()[index]
+    if targeted_word.endswith("."):
+        modified_word = targeted_word.replace(".", "en")
+    else:
+        modified_word = targeted_word + "en"
+    return modified_word
 
-    pass
 
 
 
@@ -94,7 +104,7 @@ print(make_word_groups(['inter', 'twine', 'connected', 'dependent']), "\n")
 
 
 
-# Task III: 
+# Task III: Remove a suffix from a word
 # >>> remove_suffix_ness("heaviness")
 # 'heavy'
 print(remove_suffix_ness("heaviness"), "\n")
@@ -102,3 +112,14 @@ print(remove_suffix_ness("heaviness"), "\n")
 # >>> remove_suffix_ness("sadness")
 # 'sad'
 print(remove_suffix_ness("sadness"), "\n")
+
+
+
+# Task IV: Extract and transform a word
+# >>> adjective_to_verb('I need to make that bright.', -1 )
+# 'brighten'
+print(adjective_to_verb('I need to make that bright.', -1 ), "\n")
+
+# >>> adjective_to_verb('It got dark as the sun set.', 2)
+# 'darken'
+print(adjective_to_verb('It got dark as the sun set.', 2), "\n")
