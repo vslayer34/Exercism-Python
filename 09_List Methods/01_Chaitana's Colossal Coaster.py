@@ -39,7 +39,7 @@ def find_my_friend(queue: list, friend_name: str):
     return queue.index(friend_name)
 
 
-def add_me_with_my_friends(queue, index, person_name):
+def add_me_with_my_friends(queue: list, index: int, person_name: str):
     """Insert the late arrival's name at a specific index of the queue.
 
     :param queue: list - names in the queue.
@@ -47,50 +47,47 @@ def add_me_with_my_friends(queue, index, person_name):
     :param person_name: str - the name to add.
     :return: list - queue updated with new name.
     """
+    queue.insert(index, person_name)
+    return queue
 
-    pass
 
-
-def remove_the_mean_person(queue, person_name):
+def remove_the_mean_person(queue: list, person_name: str):
     """Remove the mean person from the queue by the provided name.
 
     :param queue: list - names in the queue.
     :param person_name: str - name of mean person.
     :return: list - queue update with the mean persons name removed.
     """
+    queue.remove(person_name)
+    return queue
 
-    pass
 
-
-def how_many_namefellows(queue, person_name):
+def how_many_namefellows(queue: list, person_name: str):
     """Count how many times the provided name appears in the queue.
 
     :param queue: list - names in the queue.
     :param person_name: str - name you wish to count or track.
     :return: int - the number of times the name appears in the queue.
     """
+    return queue.count(person_name)
 
-    pass
 
-
-def remove_the_last_person(queue):
+def remove_the_last_person(queue: list):
     """Remove the person in the last index from the queue and return their name.
 
     :param queue: list - names in the queue.
     :return: str - name that has been removed from the end of the queue.
     """
+    return queue.pop()
 
-    pass
 
-
-def sorted_names(queue):
+def sorted_names(queue: list):
     """Sort the names in the queue in alphabetical order and return the result.
 
     :param queue: list - names in the queue.
     :return: list - copy of the queue in alphabetical order.
     """
-
-    pass
+    return sorted(queue)
 
 
 # Task I
@@ -110,4 +107,43 @@ print(add_me_to_the_queue(express_queue=["Tony", "Bruce"], normal_queue=["RobotG
 display_task_name("II", "Where are my friends?")
 
 display_example('find_my_friend(queue=["Natasha", "Steve", "T\'challa", "Wanda", "Rocket"], friend_name="Steve")', "1")
-print(find_my_friend(queue=["Natasha", "Steve", "T\'challa", "Wanda", "Rocket"], friend_name="Steve"))
+print(find_my_friend(queue=["Natasha", "Steve", "T\'challa", "Wanda", "Rocket"], friend_name="Steve"), "\n")
+
+
+
+# Task III
+display_task_name("III", "Can I please join them?")
+
+display_example('add_me_with_my_friends(queue=["Natasha", "Steve", "T\'challa", "Wanda", "Rocket"], index=1, person_name="Bucky")'
+    , '["Natasha", "Bucky", "Steve", "T\'challa", "Wanda", "Rocket"]')
+print(add_me_with_my_friends(queue=["Natasha", "Steve", "T'challa", "Wanda", "Rocket"], index=1, person_name="Bucky"), "\n")
+
+
+
+# Task IV
+display_task_name("IV", "Mean person in the queue")
+display_example('remove_the_mean_person(queue=["Natasha", "Steve", "Eltran", "Wanda", "Rocket"], person_name="Eltran")'
+    , '["Natasha", "Steve", "Wanda", "Rocket"]')
+print(remove_the_mean_person(queue=["Natasha", "Steve", "Eltran", "Wanda", "Rocket"], person_name="Eltran"), "\n")
+
+
+
+# Task V
+display_task_name("V", "Namefellows")
+display_example('how_many_namefellows(queue=["Natasha", "Steve", "Eltran", "Natasha", "Rocket"], person_name="Natasha")', '2')
+print(how_many_namefellows(queue=["Natasha", "Steve", "Eltran", "Natasha", "Rocket"], person_name="Natasha"), "\n")
+
+
+
+# Task VI
+display_task_name("VI", "Remove the last person")
+display_example('remove_the_last_person(queue=["Natasha", "Steve", "Eltran", "Natasha", "Rocket"])', 'Rocket')
+print(remove_the_last_person(queue=["Natasha", "Steve", "Eltran", "Natasha", "Rocket"]), "\n")
+
+
+
+
+# Task VII
+display_task_name("VII", "Sort the Queue List")
+display_example('sorted_names(queue=["Natasha", "Steve", "Eltran", "Natasha", "Rocket"])', "['Eltran', 'Natasha', 'Natasha', 'Rocket', 'Steve']")
+print(sorted_names(queue=["Natasha", "Steve", "Eltran", "Natasha", "Rocket"]), "\n")
