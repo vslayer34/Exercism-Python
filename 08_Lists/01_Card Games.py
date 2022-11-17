@@ -57,27 +57,32 @@ def approx_average_is_average(hand: license):
     average_of_first_and_last = (hand[0] + hand[-1]) / 2
     index_of_meiddle_card = len(hand) / 2
     value_of_the_middle_card = hand[int(index_of_meiddle_card)]
-    return (average_of_first_and_last or value_of_the_middle_card) == card_average(hand)
+    return average_of_first_and_last == card_average(hand) or value_of_the_middle_card == card_average(hand)
 
 
-def average_even_is_average_odd(hand):
+def average_even_is_average_odd(hand: list):
     """Return if the (average of even indexed card values) == (average of odd indexed card values).
 
     :param hand: list - cards in hand.
     :return: bool - are even and odd averages equal?
     """
+    average_of_odd_indexes = sum(hand[1::2]) / len(hand[1::2])
+    average_of_even_indexes = sum(hand[::2]) / len(hand[::2])
+    return average_of_odd_indexes == average_of_even_indexes
 
-    pass
 
-
-def maybe_double_last(hand):
+def maybe_double_last(hand: list):
     """Multiply a Jack card value in the last index position by 2.
 
     :param hand: list - cards in hand.
     :return: list - hand with Jacks (if present) value doubled.
     """
-
-    pass
+    jack = 11
+    if hand[-1] == jack:
+        hand[-1] = 2 * jack
+        return hand
+    else:
+        return hand
 
 
 
@@ -130,3 +135,29 @@ print(approx_average_is_average([2, 3, 4, 8, 8]))
 # >>> approx_average_is_average([1, 2, 3, 5, 9])
 print(approx_average_is_average([1, 2, 3, 5, 9]), "\n")
 # False
+
+
+
+# Task VI: More Averaging Techniques
+print("Task VI: More Averaging Techniques")
+# >>> average_even_is_average_odd([1, 2, 3])
+print(average_even_is_average_odd([1, 2, 3]))
+# True
+
+# >>> average_even_is_average_odd([1, 2, 3, 4])
+print(average_even_is_average_odd([1, 2, 3, 4]), "\n")
+# False
+
+
+
+# Task VII: Bonus Round Rules
+print("Task VII: Bonus Round Rules")
+# >>> hand = [5, 9, 11]
+# >>> maybe_double_last(hand)
+print(maybe_double_last([5, 9, 11]))
+# [5, 9, 22]
+
+# >>> hand = [5, 9, 10]
+# >>> maybe_double_last(hand)
+print(maybe_double_last([5, 9, 10]), "\n")
+# [5, 9, 10]
