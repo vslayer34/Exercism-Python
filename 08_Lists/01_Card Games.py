@@ -55,9 +55,9 @@ def approx_average_is_average(hand: license):
     :return: bool - does one of the approximate averages equal the `true average`?
     """
     average_of_first_and_last = (hand[0] + hand[-1]) / 2
-    index_of_meiddle_card = int(len(hand) / 2)
-    value_of_the_middle_card = hand[index_of_meiddle_card]
-    return index_of_meiddle_card
+    index_of_meiddle_card = len(hand) / 2
+    value_of_the_middle_card = hand[int(index_of_meiddle_card)]
+    return (average_of_first_and_last or value_of_the_middle_card) == card_average(hand)
 
 
 def average_even_is_average_odd(hand):
@@ -130,6 +130,3 @@ print(approx_average_is_average([2, 3, 4, 8, 8]))
 # >>> approx_average_is_average([1, 2, 3, 5, 9])
 print(approx_average_is_average([1, 2, 3, 5, 9]), "\n")
 # False
-
-
-
