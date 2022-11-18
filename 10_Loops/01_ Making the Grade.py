@@ -49,7 +49,7 @@ def above_threshold(student_scores: list, threshold: int):
     
     return excellent_score
 
-def letter_grades(highest):
+def letter_grades(highest: int):
     """Create a list of grade thresholds based on the provided highest grade.
 
     :param highest: int - value of highest exam score.
@@ -62,29 +62,43 @@ def letter_grades(highest):
             71 <= "B" <= 85
             86 <= "A" <= 100
     """
+    list_of_grades_thresholds = []
+    range_of_pass_grades = highest - 40
+    interval_of_grades = range_of_pass_grades // 4
+    for number in range(41, highest, interval_of_grades):
+        list_of_grades_thresholds.append(number)
+    return list_of_grades_thresholds
 
-    pass
 
 
-def student_ranking(student_scores, student_names):
+def student_ranking(student_scores: list, student_names: list):
     """Organize the student's rank, name, and grade information in ascending order.
 
     :param student_scores: list - of scores in descending order.
     :param student_names: list - of string names by exam score in descending order.
     :return: list - of strings in format ["<rank>. <student name>: <score>"].
     """
+    list_of_students = []
+    for index, score in enumerate(student_scores):
+        element = f"{index + 1}. {student_names[index]}: {score}"
+        list_of_students.append(element)
+    
+    return list_of_students
 
-    pass
 
-
-def perfect_score(student_info):
+def perfect_score(student_info: list):
     """Create a list that contains the name and grade of the first student to make a perfect score on the exam.
 
     :param student_info: list - of [<student name>, <score>] lists.
     :return: list - first `[<student name>, 100]` or `[]` if no student score of 100 is found.
     """
-
-    pass
+    for student in student_info:
+        if student[1] == 100:
+                index_of_student = student_info.index(student)
+                return student_info[index_of_student]
+    
+    return []
+    # return empty list if the loop didn't find anything to the condition
 
 
 
@@ -109,3 +123,33 @@ print(count_failed_students(student_scores=[90,40,55,70,30,25,80,95,38,40]), "\n
 display_task_name("III", 'The "Best"')
 display_example('above_threshold(student_scores=[90,40,55,70,30,68,70,75,83,96], threshold=75)', "[90, 75, 83, 96]")
 print(above_threshold(student_scores=[90,40,55,70,30,68,70,75,83,96], threshold=75), "\n")
+
+
+
+# Task IV
+display_task_name("IV", "Calculating Letter Grades")
+display_example("letter_grades(highest=100)", "[41, 56, 71, 86]")
+print(letter_grades(100), "\n")
+
+display_example("letter_grades(highest=88)", "[41, 53, 65, 77]")
+print(letter_grades(88), "\n")
+
+
+
+# Task V
+display_task_name("V", "Matching Names to Scores")
+student_scores = [100, 99, 90, 84, 66, 53, 47]
+student_names =  ['Joci', 'Sara','Kora','Jan','John','Bern', 'Fred']
+display_example("student_ranking(student_scores, student_names)"
+    ,"['1. Joci: 100', '2. Sara: 99', '3. Kora: 90', '4. Jan: 84', '5. John: 66', '6. Bern: 53', '7. Fred: 47']")
+print(student_ranking(student_scores, student_names), "\n")
+
+
+
+# Task VI
+display_task_name('VI', 'A "Perfect" Score')
+display_example('perfect_score(student_info=[["Charles", 90], ["Tony", 80], ["Alex", 100]])', '["Alex", 100]')
+print(perfect_score(student_info=[["Charles", 90], ["Tony", 80], ["Alex", 100]]), "\n")
+
+display_example('perfect_score(student_info=[["Charles", 90], ["Tony", 80]])', '[]')
+print(perfect_score(student_info=[["Charles", 90], ["Tony", 80]]), "\n")
