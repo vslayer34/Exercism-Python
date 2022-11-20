@@ -98,7 +98,7 @@ def perfect_score(student_info: list):
                 return student_info[index_of_student]
     
     return []
-    # return empty list if the loop didn't find anything to the condition
+    # return empty list if the loop didn't find anything to the condition to return
 
 
 
