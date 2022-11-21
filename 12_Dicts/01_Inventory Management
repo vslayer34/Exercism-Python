@@ -32,26 +32,47 @@ def create_inventory(items: list):
     return new_dict
 
 
-def add_items(inventory, items):
+def add_items(inventory: dict, items: list):
     """Add or increment items in inventory using elements from the items `list`.
 
     :param inventory: dict - dictionary of existing inventory.
     :param items: list - list of items to update the inventory with.
     :return: dict - the inventory updated with the new items.
     """
+    # combine the two dicts
+    new_dict = create_inventory(items)
+    
+    # adding existing inventory values to the new values from new-dict
+    for key in inventory:
+        if key in new_dict:
+            inventory[key] += new_dict[key]
+            # Remove the value from new_dict so it won't duplicate
+            new_dict.pop(key)
+    
+    # Update the inventiry with new items from dict
+    inventory.update(new_dict)
 
-    pass
+    return inventory
 
 
-def decrement_items(inventory, items):
+def decrement_items(inventory: dict, items: list):
     """Decrement items in inventory using elements from the `items` list.
 
     :param inventory: dict - inventory dictionary.
     :param items: list - list of items to decrement from the inventory.
     :return: dict - updated inventory with items decremented.
     """
+    removed_list = create_inventory(items)
 
-    pass
+    for key in removed_list:
+        if key in inventory:
+            inventory[key] -= removed_list[key]
+
+            # prevent number of items to be in negatives
+            if inventory[key] < 0:
+                inventory[key] = 0
+
+    return inventory
 
 
 def remove_item(inventory, item):
@@ -84,3 +105,26 @@ display_example(
 )
 
 print(create_inventory(["coal", "wood", "wood", "diamond", "diamond", "diamond"]), "\n")
+
+
+
+# Task 2
+display_task_name("II", "Add items from a list to an existing dictionary")
+display_example(
+    'add_items({"coal":1}, ["wood", "iron", "coal", "wood"])', 
+    '{"coal":2, "wood":2, "iron":1}'
+)
+
+print(add_items({"coal":1}, ["wood", "iron", "coal", "wood"]), "\n")
+
+
+
+# Task 3
+display_task_name("III", "Decrement items from the inventory")
+
+display_example(
+    'decrement_items({"coal":3, "diamond":1, "iron":5}, ["diamond", "coal", "iron", "iron"])', 
+    '{"coal":2, "diamond":0, "iron":3}'
+)
+
+print(decrement_items({"coal":3, "diamond":1, "iron":5}, ["diamond", "coal", "iron", "iron"]), "\n")
