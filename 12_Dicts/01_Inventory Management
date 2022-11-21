@@ -1,0 +1,86 @@
+# functions that helps display Examples
+from helper import display_task_name, display_example
+
+"""
+Functions to keep track and alter inventory.
+https://exercism.org/tracks/python/exercises/inventory-management
+"""
+
+
+def create_inventory(items: list):
+    """Create a dict that tracks the amount (count) of each element on the `items` list.
+
+    :param items: list - list of items to create an inventory from.
+    :return: dict - the inventory dictionary.
+    """
+    # add keys to a list
+    key_list = []
+    for item in items:
+        if item not in key_list:
+            key_list.append(item)
+    
+    # add values to a list
+    values_list = []
+    for key in key_list:
+        values_list.append(items.count(key))
+    
+    # merge the two list into dict
+    new_dict = {}
+    for index, item in enumerate(key_list):
+        new_dict.update({item: values_list[index]})
+
+    return new_dict
+
+
+def add_items(inventory, items):
+    """Add or increment items in inventory using elements from the items `list`.
+
+    :param inventory: dict - dictionary of existing inventory.
+    :param items: list - list of items to update the inventory with.
+    :return: dict - the inventory updated with the new items.
+    """
+
+    pass
+
+
+def decrement_items(inventory, items):
+    """Decrement items in inventory using elements from the `items` list.
+
+    :param inventory: dict - inventory dictionary.
+    :param items: list - list of items to decrement from the inventory.
+    :return: dict - updated inventory with items decremented.
+    """
+
+    pass
+
+
+def remove_item(inventory, item):
+    """Remove item from inventory if it matches `item` string.
+
+    :param inventory: dict - inventory dictionary.
+    :param item: str - item to remove from the inventory.
+    :return: dict - updated inventory with item removed. Current inventory if item does not match.
+    """
+
+    pass
+
+
+def list_inventory(inventory):
+    """Create a list containing all (item_name, item_count) pairs in inventory.
+
+    :param inventory: dict - an inventory dictionary.
+    :return: list of tuples - list of key, value pairs from the inventory dictionary.
+    """
+
+    pass
+
+
+
+# Task 1
+display_task_name("I", "Create an inventory based on a list")
+display_example(
+    create_inventory(["coal", "wood", "wood", "diamond", "diamond", "diamond"]), 
+    '{"coal":1, "wood":2, "diamond":3}'
+)
+
+print(create_inventory(["coal", "wood", "wood", "diamond", "diamond", "diamond"]), "\n")
