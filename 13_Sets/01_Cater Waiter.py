@@ -106,14 +106,14 @@ def compile_ingredients(dishes: list):
 
     This function should return a `set` of all ingredients from all listed dishes.
     """
-    temp = set(dishes[0])
+    set_of_master_ingredients = set()
     for index in range(0, len(dishes)):
-        set_of_master_ingredients = temp.union(dishes[index])
+        set_of_master_ingredients.update(dishes[index])
     
     return set_of_master_ingredients
 
 
-def separate_appetizers(dishes, appetizers):
+def separate_appetizers(dishes: list, appetizers: list):
     """Determine which `dishes` are designated `appetizers` and remove them.
 
     :param dishes: list - of dish names.
@@ -123,11 +123,14 @@ def separate_appetizers(dishes, appetizers):
     The function should return the list of dish names with appetizer names removed.
     Either list could contain duplicates and may require de-duping.
     """
+    dishes_set = set(dishes)
+    appetizers_set = set(appetizers)
+    removed_appetizers = dishes_set.difference(appetizers_set)
+    
+    return list(removed_appetizers)
 
-    pass
 
-
-def singleton_ingredients(dishes, intersection):
+def singleton_ingredients(dishes: list, intersection: set):
     """Determine which `dishes` have a singleton ingredient (an ingredient that only appears once across dishes).
 
     :param dishes: list - of ingredient sets.
@@ -141,8 +144,8 @@ def singleton_ingredients(dishes, intersection):
 
     The function should return a `set` of ingredients that only appear in a single dish.
     """
-
-    pass
+    singletons = (dish - intersection for dish in dishes)
+    return set.union(*singletons)
 
 
 
@@ -226,3 +229,39 @@ display_example(
 )
 
 print(compile_ingredients(dishes), "\n")
+
+
+
+# Task 6
+
+dishes =    ['Avocado Deviled Eggs','Flank Steak with Chimichurri and Asparagus', 'Kingfish Lettuce Cups',
+             'Grilled Flank Steak with Caesar Salad','Vegetarian Khoresh Bademjan','Avocado Deviled Eggs',
+             'Barley Risotto','Kingfish Lettuce Cups']
+          
+appetizers = ['Kingfish Lettuce Cups','Avocado Deviled Eggs','Satay Steak Skewers',
+              'Dahi Puri with Black Chickpeas','Avocado Deviled Eggs','Asparagus Puffs',
+              'Asparagus Puffs']
+
+display_task_name("VI", "Pull out Appetizers for Passing on Trays")
+
+display_example(
+    "separate_appetizers(dishes, appetizers)", 
+    "['Vegetarian Khoresh Bademjan', 'Barley Risotto', 'Flank Steak with Chimichurri and Asparagus', 'Grilled Flank Steak with Caesar Salad']"
+)
+
+print(separate_appetizers(dishes, appetizers), "\n")
+
+
+
+
+# Task 7
+
+display_task_name("VII", "Find Ingredients Used in Only One Recipe")
+from sets_categories_data import example_dishes, EXAMPLE_INTERSECTION
+
+display_example(
+    "singleton_ingredients(example_dishes, EXAMPLE_INTERSECTION)", 
+    "{'vegetable oil', 'vegetable stock', 'barley malt', 'tofu', 'fresh basil', 'lemon', 'ginger', 'honey', 'spaghetti', 'cornstarch', 'yeast', 'red onion', 'breadcrumbs', 'mixed herbs', 'garlic powder', 'celeriac', 'lemon zest', 'sunflower oil', 'mushrooms', 'silken tofu', 'smoked tofu', 'bell pepper', 'cashews', 'oregano', 'tomatoes', 'parsley', 'red pepper flakes', 'rosemary'}"
+)
+
+print(singleton_ingredients(example_dishes, EXAMPLE_INTERSECTION), "\n")
