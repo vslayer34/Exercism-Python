@@ -45,8 +45,6 @@ def score(x: float, y: float) -> int:
     elif pythagorean_theorem <= outer_circle_radius_squared:
         return 1
 
-    pass
-
 
 
 
