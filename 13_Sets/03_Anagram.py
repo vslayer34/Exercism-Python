@@ -36,20 +36,30 @@ def find_anagrams(word: str, candidates: list) -> list:
 
 
 
-# Test 1
-display_task_name('I', 'Anagram > no matches')
+# # Test 1
+# display_task_name('I', 'Anagram > no matches')
+# display_example(
+#     'find_anagrams("diaper", ["hello", "world", "zombies", "pants"])',
+#     '[]'
+# )
+# print(find_anagrams("diaper", ["hello", "world", "zombies", "pants"]), "\n")
+
+
+
+# # Test 2
+# display_task_name("II", "Anagram > detects two anagrams")
+# display_example(
+#     'find_anagrams("solemn", ["lemons", "cherry", "melons"])',
+#     '["lemons", "melons"]'
+# )
+# print(find_anagrams("solemn", ["lemons", "cherry", "melons"]), "\n")
+
+
+
+# Test 3
+display_task_name("III", "does not detect anagram subsets")
 display_example(
-    'find_anagrams("diaper", ["hello", "world", "zombies", "pants"])',
+    'find_anagrams("good", ["dog", "goody"])',
     '[]'
 )
-print(find_anagrams("diaper", ["hello", "world", "zombies", "pants"]), "\n")
-
-
-
-# Test 2
-display_task_name("II", "Anagram > detects two anagrams")
-display_example(
-    'find_anagrams("solemn", ["lemons", "cherry", "melons"])',
-    '["lemons", "melons"]'
-)
-print(find_anagrams("solemn", ["lemons", "cherry", "melons"]), "\n")
+print(find_anagrams("good", ["dog", "goody"]), "\n")
