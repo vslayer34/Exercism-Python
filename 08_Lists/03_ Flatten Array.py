@@ -18,11 +18,22 @@ input: [1,[2,3,null,4],[null],5]
 
 output: [1,2,3,4,5]
 '''
+import itertools
 
 
 def flatten(iterable: list) -> list:
     
-    return [ num for num in iterable ]
+    flatten_list = []
+    for i in iterable:
+        
+        if type(i) == type([]):
+            flatten_list.extend(flatten(i))
+        
+        else:
+            if i != None and i != ():
+                flatten_list.append(i)
+    
+    return flatten_list
 
 
 
